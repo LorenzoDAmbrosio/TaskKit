@@ -23,7 +23,7 @@ urlpatterns = [
     path('project_update/community/<int:community_id>/project/<int:project_id>/', views.project_update, name='project_update'),
     path('project_delete/project/<int:project_id>', views.project_delete, name='project_delete'),
 
-    path('status_delete/project/<int:project_id>', views.status_delete, name='status_delete'),
-    path('status_create/status/<int:status_id>', views.status_create, name='status_create'),
+    path('status_delete/status/<int:status_id>', views.status_delete, name='status_delete'),
+    path('status_create/project/<int:project_id>', views.status_create, name='status_create'),
 
 ]

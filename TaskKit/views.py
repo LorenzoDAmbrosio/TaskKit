@@ -4,9 +4,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 
-from TaskKit.tasks.models import Community, Project
-from TaskKit.tasks.models.project import ProjectForm
-from TaskKit.tasks.models.task import TaskForm, Task
+from TaskKit.tasks.forms import *
+from TaskKit.tasks.models import *
 
 
 def page_index(request):
@@ -119,8 +118,9 @@ def task_update(request, task_id=None, project_id=None):
         if form.is_valid():
             form.save()
 
-    return render(request, 'pages/community_detail.html',
-           {'community': project.community, 'page': 'communities'})
+    return redirect('community_detail', community_id=project.community.id, page='communities')
+
+
 def task_create(request, project_id):
     if project_id:
         project = get_object_or_404(Project, id=project_id)
@@ -130,13 +130,13 @@ def task_create(request, project_id):
         if form.is_valid():
             form.save()
 
-    return render(request, 'pages/community_detail.html',
-           {'community': project.community, 'page': 'communities'})
+    return redirect('community_detail', community_id=project.community.id, page='communities')
+
 def task_delete(request, task_id):
     task = get_object_or_404(Task, id=task_id)
     task.delete()
-    return render(request, 'pages/community_detail.html',
-              {'community': task.project.community, 'page': 'communities'})
+    return redirect('community_detail', community_id=task.project.community.id, page='communities')
+
 
 def project_create(request, community_id):
     if community_id:
@@ -147,8 +147,7 @@ def project_create(request, community_id):
         if form.is_valid():
             form.save()
 
-    return render(request, 'pages/community_detail.html',
-           {'community': community, 'page': 'communities'})
+    return redirect('community_detail', community_id=community.id, page='communities')
 
 def project_update(request, community_id=None, project_id=None):
     if community_id:
@@ -161,15 +160,16 @@ def project_update(request, community_id=None, project_id=None):
         if form.is_valid():
             form.save()
 
-    return render(request, 'pages/community_detail.html',
-           {'community': community, 'page': 'communities'})
+    return redirect('community_detail', community_id=community.id, page='communities')
+
+
 def project_delete(request, project_id):
     project = get_object_or_404(Project, id=project_id)
     project.delete()
-    return render(request, 'pages/community_detail.html',
-              {'community': project.community, 'page': 'communities'})
+    return redirect('community_detail', community_id=project.community.id, page='communities')
 
-def suatus_create(request, project_id):
+
+def status_create(request, project_id):
     project = get_object_or_404(Project, id=project_id)
 
     if request.method == 'POST':
@@ -177,5 +177,10 @@ def suatus_create(request, project_id):
         if form.is_valid():
             form.save()
 
-    return render(request, 'pages/community_detail.html',
-           {'community': project.community, 'page': 'communities'})
+    return redirect('community_detail', community_id=project.community.id, page='communities')
+
+
+def status_delete(request, status_id):
+    status = get_object_or_404(Status, id=status_id)
+    status.delete()
+    return redirect('community_detail', community_id=status.project.community.id, page='communities')

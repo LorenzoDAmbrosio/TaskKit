@@ -1,53 +1,54 @@
-
-<div class="modal fade" id="projectcreateModal" tabindex="-1" role="dialog" aria-labelledby="projectcreateModalLabel" aria-hidden="true">
+{% load static %}
+<link rel="stylesheet" type="text/css"
+      href="{% static 'style/status/status_update_dialog.css' %}"
+>
+<div class="modal fade" id="statuscreate-{{ project.id }}Modal" tabindex="-1" role="dialog" aria-labelledby="statuscreate-{{ project.id }}ModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="taskModalLabel">{{ community.name|capfirst }}: Project Create</h5>
+        <h5 class="modal-title" id="taskModalLabel">{{ project.name|capfirst }}: Status Management</h5>
       </div>
-      <form action="{% url 'project_create' community_id=community.id %}" method="post">
+      <form action="{% url 'status_create' project_id=project.id %}" method="post">
         {% csrf_token %}
         <div class="modal-body">
             <div class="container-fluid">
-              <h1>Add Status</h1>
               <form method="post">
                 {% csrf_token %}
-                <div class="form-group">
-                  <label for="id_label">Label</label>
-                  <input type="text" id="id_label" name="label" class="form-control" value="{{ status.label }}">
+                <div class="form-group input-group">
+                    <span class="input-group-text" id="basic-addon1">Label</span>
+                    <input type="text" id="id_label" name="label" class="form-control" value="{{ status.label }}">
+                    <button type="submit" class="btn btn-primary">Create
+                    </button>
                 </div>
-                <button type="submit" class="btn btn-primary">Add Status</button>
+                <input type="hidden" id="project" name="project" value="{{ project.id }}">
               </form>
 
-              <h1>Status List</h1>
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>Label</th>
-                  </tr>
-                </thead>
+              <h4 class="mt-3 mb-1">Status List</h4>
                 <div class="container-fluid">
-                  {% for status in statuses %}
-                  <div class="ro1">
-                    <div class="col-12">
-                         <span class="badge bg-light text-dark mt-2">
-                            {{ task.status.label|capfirst }}
-                             <a href="#taskupdateModal" data-bs-toggle="modal" data-bs-target="#taskupdateModal-{{ task.id }}">
-                                <i class="fa-solid fa-pencil ps-2"></i>
-                            </a>
-                        </span>
+                  {% for status in project.statuses.all %}
+                  <div class="row">
+                    <div class="task-element col-12 bg-dark text-light mt-2 p-3">
+                            {{ status.label|capfirst }}
+                        <a id="#deleteBtn" class="btn btn-light text-dark"
+                           href="{% url 'status_delete' status_id=status.id %}">
+                            Delete
+                            <i class="fa-solid fa-xmark"></i>
+                        </a>
                     </div>
                   </div>
+                  {% empty %}
+                      <div class="col-12 bg-light text-dark mt-2 p-3">
+                            No statuses
+                    </div>
                   {% endfor %}
                 </div>
-              </table>
             </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
           <button type="submit" class="btn btn-primary">Save</button>
         </div>
-        <input type="hidden" id="community" name="community" value="{{ community.id }}">
+        <input type="hidden" id="project" name="project" value="{{ project.id }}">
       </form>
     </div>
   </div>
