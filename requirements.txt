@@ -9,7 +9,7 @@ constantly==15.1.0
 crispy-bootstrap5==0.7
 cssselect==1.1.0
 daal4py==2023.1.1
-datashape==0.5.4
+datashape==0.5.2
 Django==4.2.1
 django-crispy-forms==2.0
 et-xmlfile==1.1.0
