@@ -5,10 +5,6 @@ atomicwrites==1.4.0
 backports.weakref==1.0.post1
 brotlipy==0.7.0
 clyent==1.2.1
-conda==23.3.1
-conda-build==3.24.0
-conda-repo-cli==1.0.41
-conda-verify==3.4.2
 constantly==15.1.0
 crispy-bootstrap5==0.7
 cssselect==1.1.0
