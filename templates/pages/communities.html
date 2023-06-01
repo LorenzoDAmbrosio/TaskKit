@@ -1,0 +1,24 @@
+<!-- index.html -->
+{% extends 'main/layout.html' %}
+
+{% block title %}Index Page{% endblock %}
+
+{% block content %}
+<!-- Content specific to the index page -->
+
+ <div class="container-fluid m-0 g-3 align-items-center justify-content-center w-100">
+     <div class="row row-cols-2 row-cols-lg-4 g-2">
+        {% for community in communities %}
+            <div class="col">
+                {% include 'community/community.html' with community=community redirect="communities" %}
+            </div>
+        {% endfor %}
+     </div>
+</div>
+
+
+
+
+
+<!-- Content specific to the index page -->
+{% endblock %}

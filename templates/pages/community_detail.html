@@ -1,0 +1,51 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+{% block title %}Community Space{% endblock %}
+
+{% block content %}
+{% include 'dialog/project_create_dialog.html' with community=community %}
+
+
+<div class="content mx-3">
+
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'style/community/community_detail.css' %}"
+    >
+    <nav class="nav-breadcrumb px-3 py-2 mx-2"
+        style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url page %}">{{ page|capfirst }}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ community.name }} Projects</li>
+          </ol>
+    </nav>
+
+    <div class="accordion accordion-flush mt-2 px-3" id="accordionFlushExample">
+      <div class="community-settings-collapse accordion-item ">
+        <h2 class="accordion-header bg-dark text-light " id="flush-headingOne">
+              <button class="accordion-button collapsed bg-dark text-light" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                Community Settings
+              </button>
+            <div class="community-settings-actions py-3 pe-4">
+                <button id="#filterBtn" type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#projectcreateModal">
+                    <i class="fa-solid fa-plus"></i>
+                    Add Project
+                </button>
+            </div>
+        </h2>
+        <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body bg-dark text-light">
+            </div>
+        </div>
+      </div>
+        {% for project in community.projects.all %}
+            {% include 'project/project.html' with project=project %}
+        {% endfor %}
+    </div>
+</div>
+
+
+
+
+<!-- Content specific to the index page -->
+{% endblock %}

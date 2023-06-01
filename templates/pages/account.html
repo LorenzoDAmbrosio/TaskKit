@@ -1,0 +1,49 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% block title %}Account{% endblock %}
+{% block content %}
+
+<link rel="stylesheet" type="text/css"
+      href="{% static 'style/account/account.css' %}"
+>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <div class="account-card card bg-dark text-white">
+        <div class="card-header">
+          <h2>Account</h2>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-4">
+              <img src="" class="rounded-circle" alt="Profile Picture" width="150" height="150">
+            </div>
+            <div class="col-md-8">
+              <h4>{{ user.username }}</h4>
+              <p>Email: {{ user.email }}</p>
+              <!-- Display additional user information as needed -->
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-md-6">
+              <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal">Edit Info</button>
+            </div>
+            <div class="col-md-6">
+              <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger float-end">Logout</button>
+              </form>
+            </div>
+          </div>
+          <hr>
+          <form action="{% url 'delete_account' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Delete Account</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends 'main/layout.html' %}
+{% load filters %}
+{% load static %}
+
+{% block title %}Project Planner{% endblock %}
+
+{% block content %}
+{% include 'dialog/project_create_dialog.html' with community=project.community %}
+
+
+<div class="content mx-3">
+
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'style/project/project_detail.css' %}"
+    >
+    <nav class="nav-breadcrumb px-3 py-2 mx-2"
+        style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'communities' %}">Communities</a></li>
+            <li class="breadcrumb-item">
+                <a href="{% url 'community_detail' community_id=project.community.id page='communities'  %}">
+                {{ project.community.name }}
+                </a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">{{ project.name }} Tasks</li>
+          </ol>
+    </nav>
+    <h5 class="mx-3 mt-3">{{ project.name }}</h5>
+    <div class="container-fluid bg-light p-3 mt-2">
+        {% for status in project.statuses.all %}
+        <div class="row status-container mt-2">
+            <div class="status-display col-1 bg-dark text-light py-4">
+                <h5>{{ status.label }}</h5>
+            </div>
+            <div class="col-11 p-3">
+                <div class="container-fluid bg-light mt-2">
+                    <div class="row row-cols-2 row-cols-lg-3 row-cols-xl-4 g-1">
+                        {% for task in project.tasks.all|filter_tasks_by_status:status %}
+                            <div class="col">
+                                {% include 'tasks/task.html' with task=task %}
+                            </div>
+                        {% empty %}
+                            <div class="col-12">
+                                <h3 class="text-dark">No task with this status</h3>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+            <h3 class="text-dark">No status created yet</h3>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+
+<!-- Content specific to the index page -->
+{% endblock %}

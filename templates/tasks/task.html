@@ -1,0 +1,57 @@
+{% load static %}
+{% load filters %}
+
+<link rel="stylesheet" type="text/css"
+      href="{% static 'style/task/task.css' %}"
+>
+{% include 'dialog/task_edit_dialog.html' with task=task project=task.project %}
+
+
+<div class="task card bg-dark text-light"
+    style="border-color: #{{ task.color }}">
+    <div class="card-body">
+        <div class="container">
+            <div class="row">
+                <div class="task-actions col-1 p-0">
+                    <a href="{% url 'task_delete' task_id=task.id %}">
+                        <i class="fa-solid fa-xmark pe-2"></i>
+                    </a>
+                    <a href="#taskupdateModal-{{ task.id }}" data-bs-toggle="modal" data-bs-target="#taskupdateModal-{{ task.id }}">
+                        <i class="fa-solid fa-pencil pe-2"></i>
+                    </a>
+                </div>
+                <div class="col-11 p-0">
+                    <h6 class="card-title pb-2">{{ task.title }}</h6>
+                    <div class="card-text border-light border-start ps-2 border-3">
+                        {{ task.description }}
+                        <br/>
+                        <i>Created: {{ community.creation_date|date:"d M Y  h:m" }}</i>
+                    </div>
+                    <div class="task-footer-actions">
+                        <span class="badge bg-light text-dark mt-2">
+                            {% if task.status %}
+                                {{ task.status.label|capfirst }}
+                            {% else %}
+                                Unassigned
+                            {% endif %}
+                             <a href="#taskupdateModal" data-bs-toggle="modal" data-bs-target="#taskupdateModal-{{ task.id }}">
+                                <i class="fa-solid fa-pencil ps-2"></i>
+                            </a>
+                        </span>
+                        <span class="badge bg-info text-light mt-2">
+                            <i class="fa-solid fa-user pe-2"></i>
+                            {% if task.assigned_to %}
+                                {{ task.assigned_to.username|capfirst }}
+                            {% else %}
+                                Unassigned
+                            {% endif %}
+                             <a href="#taskupdateModal" data-bs-toggle="modal" data-bs-target="#taskupdateModal-{{ task.id }}">
+                                <i class="fa-solid fa-pencil ps-2"></i>
+                            </a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

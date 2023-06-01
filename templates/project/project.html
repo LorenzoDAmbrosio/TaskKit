@@ -1,0 +1,64 @@
+{% load static %}
+{% load filters %}
+
+<link rel="stylesheet" type="text/css"
+      href="{% static 'style/project/project.css' %}"
+>
+
+{% include 'dialog/task_create_dialog.html' with task=None project=project %}
+{% include 'dialog/project_edit_dialog.html' with community=project.community project=project %}
+
+<div class="project-collapse accordion-item mt-2 bg-dark text-light"
+        style="border-top-color: #{{ project.color }} !important;">
+        <h2 class="accordion-header pe-4" id="flush-headingTwo">
+            <button class="accordion-button collapsed bg-dark text-light" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-{{ project.id }}" aria-expanded="false" aria-controls="flush-collapse-{{ project.id }}">
+              <h5>{{ project.name }}</h5>
+              <div>{{ project.creation_date|date:"Y M d h:m" }}</div>
+            </button>
+            <div class="account-actions py-3">
+                <button id="#updateBtn" type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#projectupdate-{{ project.id }}Modal">
+                    <i class="fa-solid fa-pencil"></i>
+                    Edit
+                </button>
+                <a id="#deleteBtn" class="btn btn-light text-dark"
+                   href="{% url 'project_delete' project_id=project.id %}">
+                    <i class="fa-solid fa-xmark"></i>
+                    Delete
+                </a>
+                <a id="#planningBtn" class="btn btn-light text-dark"
+                   href="{% url 'project_detail' project_id=project.id %}">
+                    <i class="fa-solid fa-bars-progress"></i>
+                    Planning
+                </a>
+               <button id="#statusBtn" type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#projectupdate-{{ project.id }}Modal">
+                    <i class="fa-solid fa-list-ol"></i>
+                    Status
+                </button>
+            </div>
+        </h2>
+    <div id="flush-collapse-{{ project.id }}" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body bg-dark text-light">
+          <div class="task_list_title">
+            <h3>Lista dei Task</h3>
+            <div style="flex-grow: 1"></div>
+            <button id="#addBtn" type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#taskcreateModal-{{ project.id }}">
+                <i class="fa-solid fa-plus"></i>
+                Add Task
+            </button>
+          </div>
+           <div class="task_list container-fluid bg-light p-3 mt-4">
+               <div class="row row-cols-2 row-cols-lg-3 row-cols-xl-4 g-1">
+                    {% for task in project.tasks.all %}
+                        <div class="col">
+                            {% include 'tasks/task.html' with task=task %}
+                        </div>
+                    {% empty %}
+                        <div class="col-12">
+                            <h3 class="text-dark">No task available</h3>
+                        </div>
+                    {% endfor %}
+                </div>
+        </div>
+      </div>
+    </div>
+</div>

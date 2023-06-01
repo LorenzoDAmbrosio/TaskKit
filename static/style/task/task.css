@@ -1,0 +1,27 @@
+.task{
+    border-radius: 1.5rem 1.5rem;
+    border-end-start-radius: .75rem;
+    border-start-start-radius: .75rem;
+    border: 0 black;
+    border-left: .5rem solid;
+
+    padding: .2rem;
+    gap: 2rem;
+    display: flex;
+}
+
+.task-actions{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.task-footer-actions{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+}
+
+.card-text{
+}

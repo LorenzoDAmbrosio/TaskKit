@@ -1,0 +1,43 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css"
+      href="{% static 'style/main/app_bar.css' %}"
+>
+{% include 'dialog/login_dialog.html' %}
+
+<nav class="navbar navbar-dark bg-dark">
+    <h3>
+        <i class="fa-solid fa-people-group"></i>
+        OpenCommunity
+    </h3>
+    <div style="flex-grow: 1"></div>
+    <h5>
+        <a href="http://127.0.0.1:8000/explore/">
+        <i class="fa-solid fa-compass mr-2"></i>
+            Explore
+        </a>
+    </h5>
+    {% if user.is_authenticated %}
+    <h5>
+        <a href="http://127.0.0.1:8000/communities/">
+        <i class="fa-solid fa-people-roof mr-2"></i>
+            Communities
+        </a>
+    </h5>
+    {% endif %}
+    <h5 class="ml-3">
+    {% if user.is_authenticated %}
+        <a href="http://127.0.0.1:8000/account/">
+            Account
+            <i class="fa-solid fa-user mx-2"></i>
+        </a>
+    {% else %}
+        <a href="#loginModal" class=""
+           data-bs-toggle="modal"
+           data-bs-target="#loginModal">
+            Login
+            <i class="fa-solid fa-sign-in mx-2"></i>
+        </a>
+    {% endif %}
+    </h5>
+</nav>

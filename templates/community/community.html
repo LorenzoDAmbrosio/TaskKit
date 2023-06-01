@@ -1,0 +1,55 @@
+{% load static %}
+{% load filters %}
+
+<link rel="stylesheet" type="text/css"
+      href="{% static 'style/community/community.css' %}"
+>
+
+<div class="community card bg-dark text-light"
+    style="border-color: #{{ community.color }}">
+    <div class="card-body">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h6 class="card-title pb-2">{{ community.name }}</h6>
+                    <small class="card-text">{{ community.description }}</small>
+                    <p class="card-text">N° members: {{ community.number_of_members }}</p>
+                    <p class="card-text">N° projects: {{ community.number_of_projects }}</p>
+                    <p class="card-text">N° tasks: {{ community.number_of_tasks }}</p>
+                </div>
+                <div class="col-auto">
+                    {% if community.is_open and not request.user|is_member_of_community:community %}
+                         <h5>
+                            <a href="">
+                                Join
+                                <i class="fa-regular fa-hand-point-up mr-2"></i>
+                            </a>
+                        </h5>
+                    {% endif %}
+                    {% if not community.is_open and not request.user|is_member_of_community:community%}
+                        <h5>
+                            <a href="">
+                                Knock
+                                <i class="fa-solid fa-hand-back-fist mr-2"></i>
+                            </a>
+                        </h5>
+                    {% endif %}
+                    {% if request.user|is_member_of_community:community%}
+                        <h5>
+                            <a href="{% url 'community_detail' community_id=community.id page=redirect %}">
+                                Enter
+                                <i class="fa-solid fa-hand-pointer mr-2"></i>
+                            </a>
+                        </h5>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer">
+        <small class="card-text">
+            Creata il {{ community.creation_date|date:"Y M d" }}
+                da {{ community.founder_user }}
+            </small>
+    </div>
+</div>
