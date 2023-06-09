@@ -20,7 +20,6 @@ llvmlite==0.39.1
 mpmath==1.2.1
 munkres==1.1.4
 mypy-extensions==0.4.3
-navigator-updater==0.3.0
 patsy==0.5.3
 pep8==1.7.1
 Pillow==9.4.0
