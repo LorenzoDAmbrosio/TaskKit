@@ -68,6 +68,8 @@ dill @ file:///C:/b/abs_42h_07z1yj/croot/dill_1667919550096/work
 distributed @ file:///C:/ci/distributed_1658523963030/work
 Django==4.2.1
 django-crispy-forms==2.0
+crispy-bootstrap5==0.7
+
 docstring-to-markdown @ file:///C:/b/abs_cf10j8nr4q/croot/docstring-to-markdown_1673447652942/work
 docutils @ file:///C:/Windows/TEMP/abs_24e5e278-4d1c-47eb-97b9-f761d871f482dy2vg450/croots/recipe/docutils_1657175444608/work
 entrypoints @ file:///C:/ci/entrypoints_1649926676279/work

@@ -1,0 +1,14 @@
+nav.navbar{
+    --bg-color:#ee5566;
+    /*background: var(--bg-color);*/
+    border-radius: 1.5rem 1.5rem;
+    padding: 1rem;
+    gap: 2rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    max-width: 100%;
+    color: var(--bs-light);
+
+}

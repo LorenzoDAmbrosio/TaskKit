@@ -1,0 +1,40 @@
+
+nav.nav-breadcrumb{
+    border-radius: 1.5rem 1.5rem !important;
+    background:#cccccc;
+    display: flex;
+    align-items: center;
+    line-height: 1rem;
+}
+
+.nav-breadcrumb .breadcrumb{
+    margin: 0 !important;
+}
+
+.community-settings-collapse .accordion-header{
+    /*border-radius: 1.5rem 1.5rem !important;*/
+    display: flex;
+    gap:2rem;
+    justify-content: start;
+    align-items: center;
+    flex-direction: row;
+}
+
+.community-settings-collapse .community-settings-actions{
+    min-width: fit-content;
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+}
+.community-settings-collapse .community-settings-actions button{
+    white-space: nowrap;
+}
+.content{
+    height: 80dvh;
+}
+.accordion.accordion-flush{
+    max-height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+}
