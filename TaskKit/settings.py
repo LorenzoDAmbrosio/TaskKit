@@ -26,6 +26,8 @@ SECRET_KEY = 'django-insecure-6ds!3c1wo&=9fvwv5#&w^e3d5+aa7zv!9oh!1#+w*$=e3p2715
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
+CSRF_TRUSTED_ORIGINS = ['https://*.up.railway.app','https://*.127.0.0.1']
+
 
 LOGIN_URL = "login/"
 LOGIN_REDIRECT_URL  = "login/"
@@ -125,6 +127,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
