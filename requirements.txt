@@ -36,11 +36,3 @@ pywin32==305.1
 queuelib==1.5.0
 psycopg2-binary==2.8.6
 
-scipy==1.10.0
-tables==3.7.0
-TBB==0.2
-tzdata==2023.3
-webencodings==0.5.1
-wincertstore==0.2
-zict==2.1.0
-zstandard==0.19.0
