@@ -34,3 +34,4 @@ python-lsp-jsonrpc==1.0.0
 queuelib==1.5.0
 psycopg2-binary==2.8.6
 gunicorn==20.0.4
+whitenoise==6.4.0
