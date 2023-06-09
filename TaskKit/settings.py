@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-6ds!3c1wo&=9fvwv5#&w^e3d5+aa7zv!9oh!1#+w*$=e3p2715
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS = ['https://*.up.railway.app','https://*.127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://*.up.railway.app']
 
 
 LOGIN_URL = "login/"
