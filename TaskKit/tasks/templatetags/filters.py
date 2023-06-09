@@ -18,7 +18,7 @@ def count_tasks_by_status(tasks,status):
 def percentage_tasks_by_status(tasks,status):
     taskCount=tasks.count()
     statusCount=tasks.filter(status=status).all().count()
-    if taskCount is 0 :
+    if taskCount == 0 :
         return 0
     return round((statusCount/taskCount)*100.0, 2)
 
