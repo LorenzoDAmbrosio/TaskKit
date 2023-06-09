@@ -17,24 +17,30 @@
                     <p class="card-text">N° projects: {{ community.number_of_projects }}</p>
                     <p class="card-text">N° tasks: {{ community.number_of_tasks }}</p>
                 </div>
-                <div class="col-auto">
-                    {% if community.is_open and not request.user|is_member_of_community:community %}
+                <div class="col-auto d-flex flex-column pt-1 gap-3 align-content-start align-items-end">
+                    {% if community.is_open and not request.user|is_member_of:community %}
                          <h5>
-                            <a href="">
+                            <a href="{% url 'community_join' community_id=community.id %}">
                                 Join
                                 <i class="fa-regular fa-hand-point-up mr-2"></i>
                             </a>
                         </h5>
                     {% endif %}
-                    {% if not community.is_open and not request.user|is_member_of_community:community%}
+                    {% if not community.is_open and not request.user|is_member_of:community%}
                         <h5>
                             <a href="">
-                                Knock
-                                <i class="fa-solid fa-hand-back-fist mr-2"></i>
+                                Private
+                                <i class="fa-solid fa-hand mr-2"></i>
+                            </a>
+                        </h5>
+                        <h5>
+                            <a href="mailto:{{ community.founder_user.email}}">
+                                Contact
+                                <i class="fa-solid fa-envelope mr-2"></i>
                             </a>
                         </h5>
                     {% endif %}
-                    {% if request.user|is_member_of_community:community%}
+                    {% if request.user|is_member_of:community%}
                         <h5>
                             <a href="{% url 'community_detail' community_id=community.id page=redirect %}">
                                 Enter

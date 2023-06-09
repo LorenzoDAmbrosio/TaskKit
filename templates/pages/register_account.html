@@ -1,0 +1,62 @@
+<!-- index.html -->
+{% extends 'main/layout.html' %}
+{% load static %}
+
+{% block title %}Index Page{% endblock %}
+
+{% block content %}
+<!-- Content specific to the index page -->
+<link rel="stylesheet" type="text/css"
+      href="{% static 'style/account/register_account.css' %}"
+>
+
+<div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="form-container bg-dark text-light p-4">
+                    <h2>Create an Account</h2>
+                    <form class="mt-3" action="{% url 'account_create' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="username" class="form-label text-white">Username</label>
+                            <input type="text" class="form-control" id="username" name="username" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label text-white">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label text-white">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="confirm_password" class="form-label text-white">Confirm Password</label>
+                            <input type="password" class="form-control" id="confirm_password" name="confirm_password"
+                                required>
+                        </div>
+                        <div class="mb-3">
+                            {% if messages %}
+                                <div class="alert alert-danger" role="alert">
+                                  <ul class="messages">
+                                    {% for message in messages %}
+                                      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                                    {% endfor %}
+                                  </ul>
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="form-footer mb-3">
+                            <button type="submit" class="btn btn-light">Create Account</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+<!-- Content specific to the index page -->
+{% endblock %}

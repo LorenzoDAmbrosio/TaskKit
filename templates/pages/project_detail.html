@@ -25,23 +25,42 @@
             <li class="breadcrumb-item active" aria-current="page">{{ project.name }} Tasks</li>
           </ol>
     </nav>
-    <h5 class="mx-3 mt-3">{{ project.name }}</h5>
-    <div class="container-fluid bg-light p-3 mt-2">
+    <h5 class="mx-3 mt-3">{{ project.name }} Planning</h5>
+    <div class="d-flex gap-2 p-3 py-0 pb-2 mt-1">
         {% for status in project.statuses.all %}
-        <div class="row status-container mt-2">
+            {% if project.tasks.all|percentage_tasks_by_status:status != 0 %}
+                <div class="d-flex mt-3 px-3 justify-content-between align-items-center rounded border border-2 {{  ""|random_border_color }}"
+                    style="width: {{ project.tasks.all|percentage_tasks_by_status:status }}% ">
+                    <b class="status-title">{{ status.label|upper }}</b>
+                    <small class="bg-dark text-light px-2 rounded">{{ project.tasks.all|percentage_tasks_by_status:status }}%</small>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div class="container-fluid bg-light p-2 mt-0">
+        {% for status in project.statuses.all %}
+        <div class="row status-container mt-2 mx-2">
             <div class="status-display col-2 bg-dark text-light py-4">
-                <h5>{{ status.label }}</h5>
+                <h5>{{ status.label|upper }}</h5>
+                <p class="d-flex mt-3 justify-content-between align-items-center w-100">
+                    <b>Total</b>
+                    <small>{{ project.tasks.all|count_tasks_by_status:status }}</small>
+                </p>
+                <p class="d-flex justify-content-between align-items-center w-100">
+                    <b>Percentage</b>
+                    <small>{{ project.tasks.all|percentage_tasks_by_status:status }}%</small>
+                </p>
             </div>
             <div class="col-10 p-3">
                 <div class="container-fluid bg-light mt-2">
                     <div class="row row-cols-2 row-cols-lg-3 row-cols-xl-4 g-1">
                         {% for task in project.tasks.all|filter_tasks_by_status:status %}
                             <div class="col">
-                                {% include 'tasks/task.html' with task=task %}
+                                {% include 'tasks/task.html' with task=task page="project" %}
                             </div>
                         {% empty %}
-                            <div class="col-12 p-2">
-                                <h3 class="text-dark">No task with this status</h3>
+                            <div class="col-12 p-2 m-0">
+                                <h6 class="text-dark">No task with this status</h6>
                             </div>
                         {% endfor %}
                     </div>
@@ -49,7 +68,7 @@
             </div>
         </div>
         {% empty %}
-            <h3 class="text-dark">No status created yet</h3>
+            <h6 class="text-dark">No status created yet</h6>
         {% endfor %}
     </div>
 </div>

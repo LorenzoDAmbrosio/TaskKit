@@ -7,13 +7,21 @@
 <!-- Content specific to the index page -->
 
  <div class="container-fluid m-0 g-3 align-items-center justify-content-center w-100">
-     <div class="row row-cols-2 row-cols-lg-4 g-2">
-        {% for community in communities %}
-            <div class="col">
-                {% include 'community/community.html' with community=community redirect="communities" %}
-            </div>
-        {% endfor %}
-     </div>
+     {% if communities %}
+         <div class="row row-cols-2 row-cols-lg-4 g-2">
+            {% for community in communities %}
+                <div class="col">
+                    {% include 'community/community.html' with community=community redirect="communities" %}
+                </div>
+            {% endfor %}
+         </div>
+    {% else %}
+        <div class="row col-12 p-4">
+            <h2>You had join no community yet</h2>
+        </div>
+     {% endif %}
+
+
 </div>
 
 

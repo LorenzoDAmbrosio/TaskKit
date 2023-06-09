@@ -27,7 +27,7 @@
                     Delete
                 </a>
                 <a id="#planningBtn" class="btn btn-light text-dark"
-                   href="{% url 'project_detail' project_id=project.id %}">
+                   href="{% url 'project_detail' project_id=project.id page="community"%}">
                     <i class="fa-solid fa-bars-progress"></i>
                     Planning
                 </a>
@@ -51,7 +51,7 @@
                <div class="row row-cols-2 row-cols-lg-3 row-cols-xl-4 g-1">
                     {% for task in project.tasks.all %}
                         <div class="col">
-                            {% include 'tasks/task.html' with task=task %}
+                            {% include 'tasks/task.html' with task=task page="community"%}
                         </div>
                     {% empty %}
                         <div class="col-12">

@@ -4,7 +4,7 @@
 <link rel="stylesheet" type="text/css"
       href="{% static 'style/task/task.css' %}"
 >
-{% include 'dialog/task_edit_dialog.html' with task=task project=task.project %}
+{% include 'dialog/task_edit_dialog.html' with task=task project=task.project page=page %}
 
 
 <div class="task card bg-dark text-light"
@@ -41,7 +41,7 @@
                         <span class="badge bg-info text-light mt-2">
                             <i class="fa-solid fa-user pe-2"></i>
                             {% if task.assigned_to %}
-                                {{ task.assigned_to.username|capfirst }}
+                                {{ task.assigned_to.username|capfirst|get_first_word }}
                             {% else %}
                                 Unassigned
                             {% endif %}

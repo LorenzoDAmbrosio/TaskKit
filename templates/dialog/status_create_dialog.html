@@ -16,7 +16,7 @@
                 {% csrf_token %}
                 <div class="form-group input-group">
                     <span class="input-group-text" id="basic-addon1">Label</span>
-                    <input type="text" id="id_label" name="label" class="form-control" value="{{ status.label }}">
+                    <input type="text" id="id_label" name="label" class="form-control" value="{{ status.label|upper }}">
                     <button type="submit" class="btn btn-primary">Create
                     </button>
                 </div>
@@ -27,7 +27,7 @@
                 <div class="container-fluid">
                   {% for status in project.statuses.all %}
                   <div class="row">
-                    <div class="task-element col-12 bg-dark text-light mt-2 p-3">
+                    <div class="task-element rounded col-12 bg-dark text-light mt-2 p-3">
                             {{ status.label|capfirst }}
                         <a id="#deleteBtn" class="btn btn-light text-dark"
                            href="{% url 'status_delete' status_id=status.id %}">

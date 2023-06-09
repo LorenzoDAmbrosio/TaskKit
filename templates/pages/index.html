@@ -1,10 +1,31 @@
 <!-- index.html -->
 {% extends 'main/layout.html' %}
+{% load static %}
 
 {% block title %}Index Page{% endblock %}
 
 {% block content %}
 <!-- Content specific to the index page -->
+
+<div class="container-fluid">
+   <div id="carouselExampleCaptions" class="carousel slide w-100" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="{% static 'images/community.jpg' %}" class="images-carousel d-flex w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block text-light">
+            <h5>Join our Community</h5>
+            <p>Create your account and start to make projects!</p>
+            <a id="#registerBtn" class="btn btn-light text-dark"
+               href="{% url 'register_account' %}">
+                <i class="fa-solid fa-people-group"></i>
+                Join by Creating an Account!
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
 
 
 

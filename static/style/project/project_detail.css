@@ -30,3 +30,7 @@ nav.nav-breadcrumb{
     overflow-y: auto;
     scroll-snap-type: y mandatory;
 }
+.status-title{
+    overflow:hidden;
+    text-overflow: ellipsis;
+}

@@ -5,6 +5,7 @@
 
 {% block content %}
 {% include 'dialog/project_create_dialog.html' with community=community %}
+{% include 'dialog/community_edit_dialog.html' with community=community users=users %}
 
 
 <div class="content mx-3">
@@ -31,10 +32,45 @@
                     <i class="fa-solid fa-plus"></i>
                     Add Project
                 </button>
+                <button id="#memberBtn" type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#communityupdateModal-{{ community.id }}">
+                    <i class="fa-solid fa-edit"></i>
+                    Manage
+                </button>
             </div>
         </h2>
         <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
             <div class="accordion-body bg-dark text-light">
+                <div class="container-fluid">
+                    <div class="row p-3 gap-3 justify-center">
+                        <div class="col d-flex justify-content-between">
+                            <strong>Members count :</strong>
+                            <small>{{ community.members.all.count }}</small>
+                        </div>
+                        <div class="col d-flex justify-content-between">
+                            <strong>Creation Date:</strong>
+                            <small>{{ community.creation_date }}</small>
+                        </div>
+                        <div class="col d-flex justify-content-between align-content-center">
+                            <strong>Is Open:</strong>
+                            <small>{{ community.is_open }}</small>
+                        </div>
+                        <div class="col d-flex justify-content-between align-content-center">
+                            <strong>Is Public:</strong>
+                            <small>{{ community.is_public }}</small>
+                        </div>
+                    </div>
+                    <div class="row d-flex justify-content-between align-content-center p-3">
+                        <div class="col-12 p-3">
+                            <h5>Community Members</h5>
+                        </div>
+                        {% for member in community.members.all %}
+                            <div class="col-12 ps-3">
+                            <strong>Name:</strong>
+                            <small>{{ member.username }}</small>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
         </div>
       </div>

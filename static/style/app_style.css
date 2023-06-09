@@ -33,3 +33,18 @@ a{
 a:hover{
     filter: brightness(80%);
 }
+
+.images-carousel{
+      object-fit: contain;
+}
+
+.carousel,
+.carousel-inner,
+.carousel-item{
+    height: 80vh;
+}
+
+.carousel-caption{
+    border-radius: 1.5rem 1.5rem;
+    background-color: var(--bs-dark);
+}

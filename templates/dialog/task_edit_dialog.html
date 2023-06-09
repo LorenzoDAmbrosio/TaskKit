@@ -1,11 +1,11 @@
 <!-- Bootstrap Modal Dialog -->
 <div class="modal fade" id="taskupdateModal-{{ task.id }}" tabindex="-1" role="dialog" aria-labelledby="taskupdateModalLabel-{{ task.id }}" aria-hidden="true">
   <div class="modal-dialog" role="document">
-    <div class="modal-content">
+    <div class="modal-content bg-dark">
       <div class="modal-header">
         <h5 class="modal-title" id="taskModalLabel">Task Form</h5>
       </div>
-      <form action="{% url 'task_update' task_id=task.id project_id=project.id %}" method="post">
+      <form action="{% url 'task_update' task_id=task.id project_id=project.id page=page%}" method="post">
         {% csrf_token %}
         <div class="modal-body">
           <div class="container-fluid">
