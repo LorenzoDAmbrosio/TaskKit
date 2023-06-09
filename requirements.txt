@@ -34,7 +34,8 @@ pytest==7.1.2
 python-lsp-jsonrpc==1.0.0
 pywin32==305.1
 queuelib==1.5.0
-scikit-learn-intelex==20230228.214818
+psycopg2-binary==2.8.6
+
 scipy==1.10.0
 tables==3.7.0
 TBB==0.2
@@ -43,4 +44,3 @@ webencodings==0.5.1
 wincertstore==0.2
 zict==2.1.0
 zstandard==0.19.0
-psycopg2-binary==2.8.6
