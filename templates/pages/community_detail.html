@@ -1,4 +1,5 @@
 {% extends 'main/layout.html' %}
+{% load filters %}
 {% load static %}
 
 {% block title %}Community Space{% endblock %}
@@ -27,6 +28,7 @@
               <button class="accordion-button collapsed bg-dark text-light" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
                 Community Settings
               </button>
+            {% if request.user|is_member_of:community%}
             <div class="community-settings-actions py-3 pe-4">
                 <button id="#filterBtn" type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#projectcreateModal">
                     <i class="fa-solid fa-plus"></i>
@@ -37,6 +39,7 @@
                     Manage
                 </button>
             </div>
+            {% endif %}
         </h2>
         <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
             <div class="accordion-body bg-dark text-light">

@@ -18,7 +18,7 @@
                     <p class="card-text">N° tasks: {{ community.number_of_tasks }}</p>
                 </div>
                 <div class="col-auto d-flex flex-column pt-1 gap-3 align-content-start align-items-end">
-                    {% if community.is_open and not request.user|is_member_of:community %}
+                    {% if community.is_open and request.user.is_logged and not request.user|is_member_of:community %}
                          <h5>
                             <a href="{% url 'community_join' community_id=community.id %}">
                                 Join
@@ -44,6 +44,14 @@
                         <h5>
                             <a href="{% url 'community_detail' community_id=community.id page=redirect %}">
                                 Enter
+                                <i class="fa-solid fa-hand-pointer mr-2"></i>
+                            </a>
+                        </h5>
+                    {% endif %}
+                    {% if not request.user.is_logged and community.is_open%}
+                        <h5>
+                            <a href="{% url 'community_detail' community_id=community.id page=redirect %}">
+                                Lookup
                                 <i class="fa-solid fa-hand-pointer mr-2"></i>
                             </a>
                         </h5>

@@ -12,6 +12,7 @@
     <div class="card-body">
         <div class="container">
             <div class="row">
+                {% if request.user.is_logged %}
                 <div class="task-actions col-1 p-0">
                     <a href="{% url 'task_delete' task_id=task.id %}">
                         <i class="fa-solid fa-xmark pe-2"></i>
@@ -20,6 +21,7 @@
                         <i class="fa-solid fa-pencil pe-2"></i>
                     </a>
                 </div>
+                {% endif %}
                 <div class="col-11 p-0">
                     <h6 class="card-title pb-2">{{ task.title }}</h6>
                     <div class="card-text border-light border-start ps-2 border-3">
@@ -34,9 +36,11 @@
                             {% else %}
                                 Unassigned
                             {% endif %}
-                             <a href="#taskupdateModal" data-bs-toggle="modal" data-bs-target="#taskupdateModal-{{ task.id }}">
-                                <i class="fa-solid fa-pencil ps-2"></i>
-                            </a>
+                            {% if request.user.is_logged %}
+                                 <a href="#taskupdateModal" data-bs-toggle="modal" data-bs-target="#taskupdateModal-{{ task.id }}">
+                                    <i class="fa-solid fa-pencil ps-2"></i>
+                                </a>
+                            {% endif %}
                         </span>
                         <span class="badge bg-info text-light mt-2">
                             <i class="fa-solid fa-user pe-2"></i>
@@ -45,9 +49,11 @@
                             {% else %}
                                 Unassigned
                             {% endif %}
+                            {% if request.user.is_logged %}
                              <a href="#taskupdateModal" data-bs-toggle="modal" data-bs-target="#taskupdateModal-{{ task.id }}">
                                 <i class="fa-solid fa-pencil ps-2"></i>
                             </a>
+                            {% endif %}
                         </span>
                     </div>
                 </div>

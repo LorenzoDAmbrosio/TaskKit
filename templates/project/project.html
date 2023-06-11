@@ -16,6 +16,7 @@
               <h5>{{ project.name }}</h5>
               <div>{{ project.creation_date|date:"Y M d h:m" }}</div>
             </button>
+            {% if request.user|is_member_of:community%}
             <div class="account-actions py-3">
                 <button id="#updateBtn" type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#projectupdate-{{ project.id }}Modal">
                     <i class="fa-solid fa-pencil"></i>
@@ -36,16 +37,19 @@
                     Status
                 </button>
             </div>
+            {% endif %}
         </h2>
     <div id="flush-collapse-{{ project.id }}" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
       <div class="accordion-body bg-dark text-light">
           <div class="task_list_title">
-            <h3>Lista dei Task</h3>
+            <h3>Task List</h3>
             <div style="flex-grow: 1"></div>
-            <button id="#addBtn" type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#taskcreateModal-{{ project.id }}">
-                <i class="fa-solid fa-plus"></i>
-                Add Task
-            </button>
+            {% if request.user|is_member_of:community%}
+                <button id="#addBtn" type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#taskcreateModal-{{ project.id }}">
+                    <i class="fa-solid fa-plus"></i>
+                    Add Task
+                </button>
+            {% endif %}
           </div>
            <div class="task_list container-fluid bg-light p-3 mt-4">
                <div class="row row-cols-2 row-cols-lg-3 row-cols-xl-4 g-1">
