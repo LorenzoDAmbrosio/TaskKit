@@ -24,5 +24,12 @@
     gap: 2%;
 }
 
+.task-badge small{
+    display: block;
+    max-width: 60px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .card-text{
 }

@@ -1,6 +1,8 @@
+import locale
 import random
 
 from django import template
+from django.utils import formats
 
 register = template.Library()
 
@@ -41,3 +43,11 @@ def get_first_word(value):
         if words:
             return words[0]
     return ''
+
+@register.filter
+def format_number(value):
+    locale.setlocale(locale.LC_ALL, 'en_US.utf8')
+
+    # Formatta il numero
+    formatted_number = locale.format_string("%f", value, grouping=True)    # Do something else here
+    return formatted_number
